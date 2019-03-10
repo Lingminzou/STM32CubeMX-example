@@ -9,6 +9,9 @@
 "ir\stm32f1xx_it.o"
 "ir\stm32f1xx_hal_msp.o"
 "ir\stm32f1xx_hal_timebase_tim.o"
+"ir\sample-cli-commands.o"
+"ir\uartcommandconsole.o"
+"ir\serial.o"
 "ir\stm32f1xx_hal_gpio_ex.o"
 "ir\stm32f1xx_hal_pcd.o"
 "ir\stm32f1xx_hal_pcd_ex.o"
@@ -38,6 +41,7 @@
 "ir\usbd_ctlreq.o"
 "ir\usbd_ioreq.o"
 "ir\usbd_cdc.o"
+"ir\freertos_cli.o"
 --library_type=microlib --strict --scatter "ir\ir.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

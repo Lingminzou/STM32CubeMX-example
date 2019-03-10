@@ -47,7 +47,6 @@
 osThreadId defaultTaskHandle;
 osThreadId ledTaskHandle;
 /* USER CODE BEGIN PV */
-
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -124,6 +123,11 @@ int main(void)
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
+  extern void vRegisterSampleCLICommands( void  );
+  vRegisterSampleCLICommands();
+
+  extern void vUARTCommandConsoleStart( uint16_t usStackSize, UBaseType_t uxPriority  );
+  vUARTCommandConsoleStart((uint16_t) 256, osPriorityLow);
   /* USER CODE END RTOS_THREADS */
 
   /* Start scheduler */
@@ -248,11 +252,9 @@ void StartDefaultTask(void const * argument)
 void ledTaskFUN(void const * argument)
 {
   /* USER CODE BEGIN ledTaskFUN */
-  static char str[] = "HelloWorld!!\r\n";
   /* Infinite loop */
   for(;;)
   {
-    CDC_Transmit_FS(str, sizeof(str));
     HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
     osDelay(500);
   }

@@ -22,17 +22,17 @@ Dialog DLL:      TCM.DLL V1.36.1.0
  
 <h2>Project:</h2>
 E:\WorkSpace\ir\ir-2.0\ir\MDK-ARM\ir.uvprojx
-Project File Date:  03/09/2019
+Project File Date:  03/10/2019
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'ir'
 compiling main.c...
-../Src/main.c(255): warning:  #223-D: function "CDC_Transmit_FS" declared implicitly
-      CDC_Transmit_FS(str, sizeof(str));
+../Src/main.c(130): warning:  #68-D: integer conversion resulted in a change of sign
+    vUARTCommandConsoleStart((uint16_t) 256, osPriorityLow);
 ../Src/main.c: 1 warning, 0 errors
 linking...
-Program Size: Code=13232 RO-data=352 RW-data=512 ZI-data=9128  
+Program Size: Code=17216 RO-data=1000 RW-data=536 ZI-data=9288  
 FromELF: creating hex file...
 "ir\ir.axf" - 0 Error(s), 1 Warning(s).
 

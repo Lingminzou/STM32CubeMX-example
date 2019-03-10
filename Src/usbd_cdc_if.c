@@ -23,7 +23,8 @@
 #include "usbd_cdc_if.h"
 
 /* USER CODE BEGIN INCLUDE */
-
+#include "serial.h"
+#include "task.h"
 /* USER CODE END INCLUDE */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -263,8 +264,30 @@ static int8_t CDC_Control_FS(uint8_t cmd, uint8_t* pbuf, uint16_t length)
 static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
 {
   /* USER CODE BEGIN 6 */
+  uint32_t i = 0x00;
+  BaseType_t xHigherPriorityTaskWoken;
+    
   USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &Buf[0]);
   USBD_CDC_ReceivePacket(&hUsbDeviceFS);
+
+  if(NULL != vSerialRxQueue)
+  {
+        // We have not woken a task at the start of the ISR.
+        xHigherPriorityTaskWoken = pdFALSE;
+        i = *Len;
+        do
+        {
+            xQueueSendFromISR(vSerialRxQueue, Buf++, &xHigherPriorityTaskWoken);
+        }while(--i);
+
+        // Now the buffer is empty we can switch context if necessary.
+        if( xHigherPriorityTaskWoken  )
+        {
+            // Actual macro used here is port specific.
+            portYIELD_FROM_ISR (xHigherPriorityTaskWoken);
+        }
+  }
+
   return (USBD_OK);
   /* USER CODE END 6 */
 }
