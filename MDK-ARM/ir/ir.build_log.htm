@@ -22,19 +22,31 @@ Dialog DLL:      TCM.DLL V1.36.1.0
  
 <h2>Project:</h2>
 E:\WorkSpace\ir\ir-2.0\ir\MDK-ARM\ir.uvprojx
-Project File Date:  03/10/2019
+Project File Date:  03/13/2019
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'ir'
-compiling main.c...
-../Src/main.c(130): warning:  #68-D: integer conversion resulted in a change of sign
-    vUARTCommandConsoleStart((uint16_t) 256, osPriorityLow);
-../Src/main.c: 1 warning, 0 errors
+compiling serial.c...
+..\Src\serial.c(34): warning:  #167-D: argument of type "signed char *" is incompatible with parameter of type "unsigned char *"
+          if(0x01 == kfifo_get(&cdcRxFifo, cRxedChar, 0x01))
+..\Src\serial.c(48): warning:  #167-D: argument of type "signed char *" is incompatible with parameter of type "uint8_t *"
+     if(0x00 != CDC_Transmit_FS(pcWelcomeMessage, len))
+..\Src\serial.c(50): warning:  #223-D: function "osDelay" declared implicitly
+         osDelay(10);
+..\Src\serial.c(53): warning:  #940-D: missing return statement at end of non-void function "vSerialPutString" 
+  }
+..\Src\serial.c(64): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+      if(0x00 != CDC_Transmit_FS(&tx, 0x01))
+..\Src\serial.c(66): warning:  #223-D: function "osDelay" declared implicitly
+          osDelay(10);
+..\Src\serial.c(69): warning:  #940-D: missing return statement at end of non-void function "xSerialPutChar" 
+  }
+..\Src\serial.c: 7 warnings, 0 errors
 linking...
-Program Size: Code=17216 RO-data=1000 RW-data=536 ZI-data=9288  
+Program Size: Code=17676 RO-data=1000 RW-data=544 ZI-data=16600  
 FromELF: creating hex file...
-"ir\ir.axf" - 0 Error(s), 1 Warning(s).
+"ir\ir.axf" - 0 Error(s), 7 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -57,7 +69,7 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.1.2
-Build Time Elapsed:  00:00:03
+Build Time Elapsed:  00:00:04
 </pre>
 </body>
 </html>

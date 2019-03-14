@@ -8,8 +8,6 @@
 
 typedef int xComPortHandle;
 
-extern QueueHandle_t vSerialRxQueue;
-
 xComPortHandle xSerialPortInitMinimal(int baudRate, int queueLength);
 
 int xSerialGetChar(xComPortHandle xPort, signed char *cRxedChar, int timeout);

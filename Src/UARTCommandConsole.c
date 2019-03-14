@@ -128,6 +128,8 @@ static xComPortHandle xPort = 0;
 
 /*-----------------------------------------------------------*/
 
+TaskHandle_t xConsoleHandle = NULL;
+
 void vUARTCommandConsoleStart( uint16_t usStackSize, UBaseType_t uxPriority )
 {
 	/* Create the semaphore used to access the UART Tx. */
@@ -140,7 +142,7 @@ void vUARTCommandConsoleStart( uint16_t usStackSize, UBaseType_t uxPriority )
 					usStackSize,				/* The size of the stack allocated to the task. */
 					NULL,						/* The parameter is not used, so NULL is passed. */
 					uxPriority,					/* The priority allocated to the task. */
-					NULL );						/* A handle is not required, so just pass NULL. */
+					&xConsoleHandle);	    	//	/* A handle is not required, so just pass NULL. */
 }
 /*-----------------------------------------------------------*/
 

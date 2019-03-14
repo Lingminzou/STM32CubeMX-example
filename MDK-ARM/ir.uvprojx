@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F103xB</Define>
               <Undefine></Undefine>
-              <IncludePath>../Inc;../Drivers/STM32F1xx_HAL_Driver/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;../Middlewares/Third_Party/FreeRTOS/Source/include;../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS;../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM3;../Middlewares/ST/STM32_USB_Device_Library/Core/Inc;../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc;../Drivers/CMSIS/Device/ST/STM32F1xx/Include;../Drivers/CMSIS/Include;..\Middlewares\Third_Party\FreeRTOS-Plus\FreeRTOS-Plus-CLI</IncludePath>
+              <IncludePath>../Inc; ../Drivers/STM32F1xx_HAL_Driver/Inc; ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy; ../Middlewares/Third_Party/FreeRTOS/Source/include; ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS; ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM3; ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc; ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc; ../Drivers/CMSIS/Device/ST/STM32F1xx/Include; ../Drivers/CMSIS/Include; ..\Middlewares\Third_Party\FreeRTOS-Plus\FreeRTOS-Plus-CLI</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -393,6 +393,21 @@
           <GroupName>Application/User</GroupName>
           <Files>
             <File>
+              <FileName>Sample-CLI-commands.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\Sample-CLI-commands.c</FilePath>
+            </File>
+            <File>
+              <FileName>UARTCommandConsole.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\UARTCommandConsole.c</FilePath>
+            </File>
+            <File>
+              <FileName>serial.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\serial.c</FilePath>
+            </File>
+            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Src/main.c</FilePath>
@@ -438,19 +453,9 @@
               <FilePath>../Src/stm32f1xx_hal_timebase_tim.c</FilePath>
             </File>
             <File>
-              <FileName>Sample-CLI-commands.c</FileName>
+              <FileName>app_fifo.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Src\Sample-CLI-commands.c</FilePath>
-            </File>
-            <File>
-              <FileName>UARTCommandConsole.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Src\UARTCommandConsole.c</FilePath>
-            </File>
-            <File>
-              <FileName>serial.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Src\serial.c</FilePath>
+              <FilePath>..\Src\app_fifo.c</FilePath>
             </File>
           </Files>
         </Group>
