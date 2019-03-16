@@ -173,13 +173,13 @@ xComPortHandle xPort;
 		/* Wait for the next character.  The while loop is used in case
 		INCLUDE_vTaskSuspend is not set to 1 - in which case portMAX_DELAY will
 		be a genuine block time rather than an infinite block time. */
-		while( xSerialGetChar( xPort, &cRxedChar, portMAX_DELAY ) != pdPASS );
+		while( xSerialGetChar( xPort, &cRxedChar, (uint32_t) portMAX_DELAY ) != pdPASS );
 
 		/* Ensure exclusive access to the UART Tx. */
 		if( xSemaphoreTake( xTxMutex, cmdMAX_MUTEX_WAIT ) == pdPASS )
 		{
 			/* Echo the character back. */
-			xSerialPutChar( xPort, cRxedChar, portMAX_DELAY );
+			xSerialPutChar( xPort, cRxedChar, (uint32_t) portMAX_DELAY );
 
 			/* Was it the end of the line? */
 			if( cRxedChar == '\n' || cRxedChar == '\r' )

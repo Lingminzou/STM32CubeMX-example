@@ -127,7 +127,7 @@ int main(void)
   vRegisterSampleCLICommands();
 
   extern void vUARTCommandConsoleStart( uint16_t usStackSize, UBaseType_t uxPriority  );
-  vUARTCommandConsoleStart((uint16_t) 256, osPriorityLow);
+  vUARTCommandConsoleStart(256, (UBaseType_t) osPriorityLow);
   /* USER CODE END RTOS_THREADS */
 
   /* Start scheduler */

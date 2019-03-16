@@ -10,9 +10,9 @@ typedef int xComPortHandle;
 
 xComPortHandle xSerialPortInitMinimal(int baudRate, int queueLength);
 
-int xSerialGetChar(xComPortHandle xPort, signed char *cRxedChar, int timeout);
+BaseType_t xSerialGetChar(xComPortHandle xPort, signed char *cRxedChar, uint32_t timeout);
 
-int vSerialPutString(xComPortHandle xPort, signed char *pcWelcomeMessage, unsigned short len);
+BaseType_t vSerialPutString(xComPortHandle xPort, signed char *pcWelcomeMessage, unsigned short len);
 
-int xSerialPutChar(xComPortHandle xPort, signed char c, int timeout);
+BaseType_t xSerialPutChar(xComPortHandle xPort, signed char c, uint32_t timeout);
 

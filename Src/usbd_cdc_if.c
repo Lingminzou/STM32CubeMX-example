@@ -281,7 +281,7 @@ static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
 
   if(count != *Len)
   {
-    vSerialPutString(0x00, "cdc rx buffer full!!!", strlen("cdc rx buffer full!!!"));
+    CDC_Transmit_FS((uint8_t*) "cdc rx buffer full!!!", strlen("cd rx buffer full!!!"));
   }
 
   if(NULL != xConsoleHandle)

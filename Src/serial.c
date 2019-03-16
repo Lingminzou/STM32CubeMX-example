@@ -5,7 +5,9 @@
 
 #include "serial.h"
 #include "usbd_cdc_if.h"
+#include "FreeRTOS.h"
 #include "task.h"
+#include "cmsis_os.h"
 #include "app_fifo.h"
 
 extern TaskHandle_t xConsoleHandle;
@@ -19,7 +21,7 @@ xComPortHandle xSerialPortInitMinimal(int baudRate, int queueLength)
     return 0x00;
 }
 
-int xSerialGetChar(xComPortHandle xPort, signed char *cRxedChar, int timeout)
+BaseType_t xSerialGetChar(xComPortHandle xPort, signed char *cRxedChar, uint32_t timeout)
 {
     static uint32_t i = 0x00;
 
@@ -32,7 +34,7 @@ int xSerialGetChar(xComPortHandle xPort, signed char *cRxedChar, int timeout)
         i = kfifo_len(&cdcRxFifo);
     }
 
-    if(0x01 == kfifo_get(&cdcRxFifo, cRxedChar, 0x01))
+    if(0x01 == kfifo_get(&cdcRxFifo, (unsigned char*) cRxedChar, 0x01))
     {
         i--;
     }
@@ -40,20 +42,22 @@ int xSerialGetChar(xComPortHandle xPort, signed char *cRxedChar, int timeout)
     return pdPASS;
 }
 
-int vSerialPutString(xComPortHandle xPort, signed char *pcWelcomeMessage, unsigned short len)
+BaseType_t vSerialPutString(xComPortHandle xPort, signed char *pMessage, unsigned short len)
 {
     xPort = xPort;
 
 retry:
 
-   if(0x00 != CDC_Transmit_FS(pcWelcomeMessage, len))
+   if(0x00 != CDC_Transmit_FS((uint8_t*)pMessage, len))
    {
        osDelay(10);
        goto retry;
    }
+
+   return pdTRUE;
 }
 
-int xSerialPutChar(xComPortHandle xPort, signed char c, int timeout)
+BaseType_t xSerialPutChar(xComPortHandle xPort, signed char c, uint32_t timeout)
 {
     xPort = xPort;
     timeout = timeout;
@@ -62,10 +66,12 @@ int xSerialPutChar(xComPortHandle xPort, signed char c, int timeout)
 
 retry:
 
-    if(0x00 != CDC_Transmit_FS(&tx, 0x01))
+    if(0x00 != CDC_Transmit_FS((uint8_t*)&tx, 0x01))
     {
         osDelay(10);
         goto retry;
     }
+
+    return pdTRUE;
 }
 
