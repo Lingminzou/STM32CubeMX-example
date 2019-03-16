@@ -16,13 +16,13 @@
 
 第三步，把我们需要的外设和中间件库选上，有 USB 接口，GPIO 接口，FREERTOS 和 USB_DEVICE 的支持，最后如下图：
 
-![STM32配置图](http://wx2.sinaimg.cn/mw690/006kxAfbgy1g14o9z9p7fj30vp0p476s.jpg)
+![STM32配置图](https://github.com/Lingminzou/STM32CubeMX-example/blob/master/images/STM32配置图.png)
 
 配置的时候有以下几点要注意的：
 
 1、时钟的配置在 RCC 选项，根据实际情况是选内部 RC 还是外部晶振，外部晶振的话要占用两个引脚，我这里是 8 Mhz 外部晶振，配置如下：
 
-![RCC外部晶振配置](http://wx2.sinaimg.cn/mw690/006kxAfbgy1g14oa2ffajj30q008dt8v.jpg)
+![RCC外部晶振配置](https://github.com/Lingminzou/STM32CubeMX-example/blob/master/images/外部晶振配置.png)
 
 2、关于 debug 口子的配置，默认它是认为我们不需要 debug 口的，所以如果不更改的话生成代码下载进去后 debug 口就关闭了，哈哈哈
 
@@ -32,11 +32,11 @@
 
 然后在 SYS 里面选择 debug 工具连接的类型，我这里是 SWD 的方式连接的，选择串行线，如下图：
 
-![debug接口配置](http://wx1.sinaimg.cn/mw690/006kxAfbgy1g14o9q01j8j30pv08zmxf.jpg)
+![debug接口配置](https://github.com/Lingminzou/STM32CubeMX-example/blob/master/images/debug接口配置.png)
 
 3、由于 STM32CubeMX 使用的 HAL 库有一个 delay 接口默认是使用 SysTick 定时器来实现的，而由于这里我们选用了 FreeRTOS，它使用的心跳时钟在 Cortex 内核上的移植都是依赖于 SysTick 定时器，这里会有冲突，这一点在点击生成代码按钮时 STM32CubeMX 也会发出警告，这里我们为 HAL 库使用的定时器选过一个就可以了，如下图，这里我把它选到了 TIM1，
 
-![HAL库时钟配置](http://wx1.sinaimg.cn/mw690/006kxAfbgy1g14o9t0qcfj30pr05tdft.jpg)
+![HAL库时钟配置](https://github.com/Lingminzou/STM32CubeMX-example/blob/master/images/HAL库时钟配置.png)
 
 4、由于后续我们还要在 FreeRTOS 上加入许多线程，我们把他的堆大小设置大一点，在 FREERTOS 的 Config parameters 里面的 TOTAL_HEAP_SIZE，这里比较任性，我配置了 1024 字节，哈哈哈
 
@@ -46,7 +46,7 @@
 
 到这里我们的 LED 还是不能闪的，这需要我们加入几条代码，这个简单，找到我们在工具上创建的 ledTask 线程，在线程函数实体里面加入如下代码再编译下载后灯就开始闪了，简单吧。
 
-![LED闪烁线程](http://wx3.sinaimg.cn/mw690/006kxAfbgy1g14o9w11nwj30jz0a4t90.jpg)
+![LED闪烁线程](https://github.com/Lingminzou/STM32CubeMX-example/blob/master/images/LED闪烁线程.png)
 
 我想我的介绍就到这里结束吧，这才简单嘛，哈哈哈，但等等，说好的虚拟终端呢，
 
@@ -143,7 +143,7 @@
 
 到这里就介绍完啦，最终串口终端效果图如下：
 
-![终端效果](http://wx2.sinaimg.cn/mw690/006kxAfbgy1g14oalft5wj30da0d9mxd.jpg)
+![终端效果](https://github.com/Lingminzou/STM32CubeMX-example/blob/master/images/终端效果.png)
 
 想玩的朋友赶紧去试试吧，欢迎向我留言提问，如果想获取完整工程请到如下链接获取：
 
